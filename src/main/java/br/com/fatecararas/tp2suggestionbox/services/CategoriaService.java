@@ -14,9 +14,10 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository repository;
 
-    public void salvar(CategoriaDTO dto) {
-        var entity = new CategoriaEntity(null, dto.getDescricao());
-        repository.save(entity);
+    public CategoriaDTO salvar(CategoriaDTO dto) {
+        var categoria = new CategoriaEntity(null, dto.getDescricao());
+        CategoriaEntity entity = repository.save(categoria);
+        return new CategoriaDTO(entity);
     }
 
     public void excluir(Integer id) {
