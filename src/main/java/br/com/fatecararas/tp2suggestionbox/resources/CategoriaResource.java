@@ -18,8 +18,11 @@ import java.util.List;
 @RequestMapping("/api/v1/categorias")
 public class CategoriaResource {
 
-    @Autowired
-    private CategoriaService service;
+    private final CategoriaService service;
+
+    public CategoriaResource(CategoriaService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public ResponseEntity<?> salvar(@Valid @RequestBody CategoriaDTO dto) {
@@ -50,5 +53,10 @@ public class CategoriaResource {
     @DeleteMapping("/{id}")
     public void excluir(@PathVariable Integer id) {
         service.excluir(id);
+    }
+
+    @GetMapping("/{id}")
+    public CategoriaDTO buscarPorId(@PathVariable Integer id) {
+        return service.buscarPorId(id);
     }
 }

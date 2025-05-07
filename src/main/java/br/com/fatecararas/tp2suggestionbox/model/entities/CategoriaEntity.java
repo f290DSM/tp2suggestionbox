@@ -1,17 +1,16 @@
 package br.com.fatecararas.tp2suggestionbox.model.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "categorias")
 public class CategoriaEntity {
     @Id
@@ -19,4 +18,7 @@ public class CategoriaEntity {
     private Integer id;
     @Column(nullable = false, length = 100)
     private String descricao;
+    @JsonIgnore
+    @OneToMany(mappedBy = "categoria")
+    private List<SugestaoEntity> sugestoes = new ArrayList<>();
 }
