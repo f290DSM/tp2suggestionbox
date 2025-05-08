@@ -16,11 +16,12 @@ public class SugestaoDTO {
     @NotNull(message = "O campo descrição não pode ser nulo")
     @Size(max = 500)
     private String descricao;
+    @NotNull(message = "O campo categoria não pode ser nulo")
     private CategoriaDTO categoria;
 
-    public SugestaoDTO(SugestaoEntity entity) {
-        this.id = entity.getId();
-        this.descricao = entity.getDescricao();
-        this.categoria = new CategoriaDTO(entity.getCategoria());
-    }
+//    public SugestaoDTO(SugestaoEntity entity) {
+//        this.id = entity.getId();
+//        this.descricao = entity.getDescricao();
+//        this.categoria = new CategoriaDTO(entity.getCategoria());
+//    }
 }

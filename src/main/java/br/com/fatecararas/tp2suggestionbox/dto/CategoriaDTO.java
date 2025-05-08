@@ -1,6 +1,7 @@
 package br.com.fatecararas.tp2suggestionbox.dto;
 
 import br.com.fatecararas.tp2suggestionbox.model.entities.CategoriaEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,15 +20,7 @@ public class CategoriaDTO {
     @NotBlank(message = "Descrição é obrigatória")
     private String descricao;
 
+    @JsonIgnore
     private List<SugestaoDTO> sugestoes = new ArrayList<>();
-
-    public CategoriaDTO(CategoriaEntity entity) {
-        this.id = entity.getId();
-        this.descricao = entity.getDescricao();
-        this.sugestoes = entity.getSugestoes()
-                .stream()
-                .map(SugestaoDTO::new)
-                .toList();
-    }
 
 }
