@@ -32,4 +32,10 @@ public class SugestaoResource {
                 .map( c -> mapper.map(c, SugestaoDTO.class))
                 .toList();
     }
+
+    //TODO: Buscar por ID
+
+    //TODO: Exluir
+
+    //TODO: Editar
 }

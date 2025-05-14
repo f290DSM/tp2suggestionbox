@@ -59,4 +59,8 @@ public class CategoriaResource {
     public CategoriaDTO buscarPorId(@PathVariable Integer id) {
         return service.buscarPorId(id);
     }
+
+    //TODO: Editar Categoria
+
+    //TODO: Buscar por descrição
 }
