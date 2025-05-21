@@ -12,15 +12,15 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Config {
-    private final ApiCommonProperties properties;
+    private final ApiConfigurationProperties properties;
 
-    public Config(@Qualifier("apiCommonProperties") ApiCommonProperties properties) {
+    public Config(@Qualifier("apiConfigurationProperties") ApiConfigurationProperties properties) {
         this.properties = properties;
     }
 
     @Bean
     public OpenAPI getOpenApiDocumentation() {
-        ApiCommonProperties.Contact c = properties.getContact();
+        ApiConfigurationProperties.Contact c = properties.getContact();
 
         return new OpenAPI()
                 .info(new Info()

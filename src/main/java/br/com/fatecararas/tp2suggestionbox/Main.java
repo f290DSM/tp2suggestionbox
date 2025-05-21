@@ -1,11 +1,11 @@
 package br.com.fatecararas.tp2suggestionbox;
 
-import br.com.fatecararas.tp2suggestionbox.core.config.ApiCommonProperties;
+import br.com.fatecararas.tp2suggestionbox.core.config.ApiConfigurationProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-@EnableConfigurationProperties(ApiCommonProperties.class)
+@EnableConfigurationProperties(ApiConfigurationProperties.class)
 @SpringBootApplication
 public class Main {
 

@@ -71,6 +71,11 @@ public class CategoriaResource {
         service.excluir(id);
     }
 
+    @Operation(description = "Buscar uma categoria cadastrada na base de dados da API.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Retorna a categoria encontrada"),
+            @ApiResponse(responseCode = "404", description = "Categoria não encontrada")
+    })
     @GetMapping("/{id}")
     public CategoriaDTO buscarPorId(@PathVariable Integer id) throws RecursoNaoEncontradoException {
         return service.buscarPorId(id);
