@@ -19,18 +19,18 @@ springdoc:
   api-docs.path: /openapi/v3/api-docs
   packagesToScan: br.com.fatecararas.tp2suggestionbox.resources
   pathsToMatch: /**
+
 api:
   common:
     version: 1.0.0
-    title: DevNotes
-    description: API de compartilhamento de notas de desenvolvimento de software e afins.
-    termsOfService: Em progresso...
-    license: Nossa Lincesa
-    licenseUrl: Em progresso...
-    externalDocDesc: WIKI PAGE em progresso
-    externalDocUrl: WIKI URL em progresso...
+    title: API de Caixa de Sugestões - Fatec Araras
+    description: API para gerenciamento de sugestões desenvolvidas pelos alunos da Fatec Araras
+    termsOfService: Em desenvolvimento
+    license: Em desenvolvimento
+    licenseUrl: Em desenvolvimento
+    externalDocDesc: Em desenvolvimento
+    externalDocUrl: Em desenvolvimento
     contact:
       name: Esdras B Silva
-      url: esdras.youtrack.com
+      url: github.com/f290DSM
       email: esdras.silva9@fatec.sp.gov.br
-

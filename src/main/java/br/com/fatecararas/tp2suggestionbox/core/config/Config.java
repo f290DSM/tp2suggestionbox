@@ -14,11 +14,11 @@ import org.springframework.context.annotation.Configuration;
 public class Config {
     private final ApiCommonProperties properties;
 
-    public Config(@Qualifier("api.common-br.com.fatecararas.tp2suggestionbox.core.config.ApiCommonProperties") ApiCommonProperties properties) {
+    public Config(@Qualifier("apiCommonProperties") ApiCommonProperties properties) {
         this.properties = properties;
     }
 
-//    @Bean
+    @Bean
     public OpenAPI getOpenApiDocumentation() {
         ApiCommonProperties.Contact c = properties.getContact();
 

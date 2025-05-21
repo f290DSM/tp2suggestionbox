@@ -1,5 +1,6 @@
 package br.com.fatecararas.tp2suggestionbox.resources;
 
+import br.com.fatecararas.tp2suggestionbox.core.config.exceptions.RecursoNaoEncontradoException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@Tag(name = "Categorias", description = "Endpoints para gerenciamento de categorias.")
 @RestController
 @RequestMapping("/api/v1/categorias")
 public class CategoriaResource {
@@ -44,6 +46,11 @@ public class CategoriaResource {
         }
     }
 
+    @Operation(description = "Listar todas as categorias cadastradas na base de dados da API.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Retorna todas as categorias cadastradas"),
+            @ApiResponse(responseCode = "404", description = "Nenhuma categoria encontrada")
+    })
     @GetMapping("/todas")
     public ResponseEntity<?> buscarTodas() {
         List<CategoriaDTO> categorias = service.buscarTodas();
@@ -53,14 +60,19 @@ public class CategoriaResource {
         return ResponseEntity.status(HttpStatus.OK).body(categorias);
     }
 
+    @Operation(description = "Excluir uma categoria cadastrada na base de dados da API.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Categoria excluída com sucesso"),
+            @ApiResponse(responseCode = "422", description = "Requisição não pode ser processada.")
+    })
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void excluir(@PathVariable Integer id) {
+    public void excluir(@PathVariable Integer id) throws RecursoNaoEncontradoException{
         service.excluir(id);
     }
 
     @GetMapping("/{id}")
-    public CategoriaDTO buscarPorId(@PathVariable Integer id) {
+    public CategoriaDTO buscarPorId(@PathVariable Integer id) throws RecursoNaoEncontradoException {
         return service.buscarPorId(id);
     }
 

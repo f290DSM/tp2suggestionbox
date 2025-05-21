@@ -1,5 +1,6 @@
 package br.com.fatecararas.tp2suggestionbox.services;
 
+import br.com.fatecararas.tp2suggestionbox.core.config.exceptions.RecursoNaoEncontradoException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,10 @@ public class CategoriaService {
         return mapper.map(saved, CategoriaDTO.class);
     }
 
-    public void excluir(Integer id) {
+    public void excluir(Integer id) throws RecursoNaoEncontradoException{
+        if (!repository.existsById(id)) {
+            throw new RecursoNaoEncontradoException("ID: %d não existe na base de dados".formatted(id));
+        }
         repository.deleteById(id);
     }
 
@@ -38,11 +42,11 @@ public class CategoriaService {
                 .toList();
     }
 
-    public CategoriaDTO buscarPorId(Integer id) {
+    public CategoriaDTO buscarPorId(Integer id) throws RecursoNaoEncontradoException{
         Optional<CategoriaEntity> optional = repository.findById(id);
         if (optional.isPresent()) {
             return mapper.map(optional.get(), CategoriaDTO.class);
         }
-        throw new RuntimeException("Categoria não encontrada");
+        throw new RecursoNaoEncontradoException("Categoria não encontrada");
     }
 }
