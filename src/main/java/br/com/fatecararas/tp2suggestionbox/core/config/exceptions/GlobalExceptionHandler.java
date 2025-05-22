@@ -23,8 +23,8 @@ public class GlobalExceptionHandler {
                 .body(new ApiError(request, HttpStatus.NOT_FOUND, ex.getMessage()));
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiError> methodArgumentNotValidException(MethodArgumentNotValidException ex,
+    @ExceptionHandler({MethodArgumentNotValidException.class, RegraDeNegocioException.class})
+    public ResponseEntity<ApiError> methodArgumentNotValidException(Exception ex,
                                                                     HttpServletRequest request,
                                                                     BindingResult result) {
         log.error("Api Error - ", ex);

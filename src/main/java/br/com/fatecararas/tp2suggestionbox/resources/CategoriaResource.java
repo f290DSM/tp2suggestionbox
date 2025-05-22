@@ -51,13 +51,9 @@ public class CategoriaResource {
             @ApiResponse(responseCode = "200", description = "Retorna todas as categorias cadastradas"),
             @ApiResponse(responseCode = "404", description = "Nenhuma categoria encontrada")
     })
-    @GetMapping("/todas")
-    public ResponseEntity<?> buscarTodas() {
-        List<CategoriaDTO> categorias = service.buscarTodas();
-        if (categorias.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhuma categoria encontrada");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(categorias);
+    @GetMapping
+    public List<CategoriaDTO> buscarTodas() throws RecursoNaoEncontradoException {
+        return service.buscarTodas();
     }
 
     @Operation(description = "Excluir uma categoria cadastrada na base de dados da API.")
@@ -67,7 +63,7 @@ public class CategoriaResource {
     })
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void excluir(@PathVariable Integer id) throws RecursoNaoEncontradoException{
+    public void excluir(@PathVariable Integer id) throws RecursoNaoEncontradoException {
         service.excluir(id);
     }
 
@@ -82,6 +78,24 @@ public class CategoriaResource {
     }
 
     //TODO: Editar Categoria
+    @Operation(description = "Editar uma categoria cadastrada na base de dados da API.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Retorna a categoria editada"),
+            @ApiResponse(responseCode = "422", description = "Categoria não pode ser editada")
+    })
+    @PutMapping("/editar")
+    public CategoriaDTO editar(@Valid @RequestBody CategoriaDTO dto) throws Exception {
+        return service.editar(dto);
+    }
 
     //TODO: Buscar por descrição
+    @Operation(description = "Buscar uma categoria cadastrada na base de dados da API pela descrição.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Retorna a categoria encontrada"),
+            @ApiResponse(responseCode = "404", description = "Categoria não encontrada")
+    })
+    @GetMapping("/buscar")
+    public CategoriaDTO buscarPorDescricao(@RequestParam String descricao) throws RecursoNaoEncontradoException {
+        return service.buscarPorDescricao(descricao);
+    }
 }

@@ -1,18 +1,6 @@
 spring:
-  application:
-    name: tp2suggestionbox
-  datasource:
-    url: jdbc:h2:mem:fatec;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: fatec
-    password: aluno
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: create
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+  profiles:
+    active: dev
 
 springdoc:
   swagger-ui.path: /openapi/swagger-ui.html

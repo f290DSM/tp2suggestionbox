@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: tp2suggestionbox
+  datasource:
+    url: jdbc:h2:mem:fatec;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: fatec
+    password: aluno
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+server:
+  port: 9000

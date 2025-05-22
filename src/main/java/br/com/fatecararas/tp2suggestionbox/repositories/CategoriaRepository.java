@@ -7,5 +7,5 @@ import br.com.fatecararas.tp2suggestionbox.model.entities.CategoriaEntity;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<CategoriaEntity, Integer> {
-    
+    CategoriaEntity findByDescricaoContainsIgnoreCase(String descricao);
 }
